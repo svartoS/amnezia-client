@@ -249,12 +249,13 @@ bool WireguardUtilsLinux::updatePeer(const InterfaceConfig& config) {
         out << "preshared_key=" << QString(pskKey.toHex()) << "\n";
     }
     if (!config.m_serverIpv4AddrIn.isNull()) {
-    const QString host = config.m_serverIpv4AddrIn;
-    if (host.contains(':') && !host.startsWith('[')) {
-        out << "endpoint=[" << host << "]:";
-    } else {
-        out << "endpoint=" << host << ":";
-    } else if (!config.m_serverIpv6AddrIn.isNull()) {
+        const QString host = config.m_serverIpv4AddrIn;
+        if (host.contains(':') && !host.startsWith('[')) {
+            out << "endpoint=[" << host << "]:";
+        } else {
+            out << "endpoint=" << host << ":";
+        }
+    } else if (!config.m_serverIpv6AddrIn.isNull()) { else if (!config.m_serverIpv6AddrIn.isNull()) {
         out << "endpoint=[" << config.m_serverIpv6AddrIn << "]:";
     } else {
         logger.warning() << "Failed to create peer with no endpoints";
