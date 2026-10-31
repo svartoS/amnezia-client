@@ -255,7 +255,7 @@ bool WireguardUtilsLinux::updatePeer(const InterfaceConfig& config) {
         } else {
             out << "endpoint=" << host << ":";
         }
-    } else if (!config.m_serverIpv6AddrIn.isNull()) { else if (!config.m_serverIpv6AddrIn.isNull()) {
+    } else if (!config.m_serverIpv6AddrIn.isNull()) {
         out << "endpoint=[" << config.m_serverIpv6AddrIn << "]:";
     } else {
         logger.warning() << "Failed to create peer with no endpoints";
